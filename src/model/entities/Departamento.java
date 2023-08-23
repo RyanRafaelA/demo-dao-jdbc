@@ -43,7 +43,6 @@ public class Departamento implements Serializable{
 		Departamento other = (Departamento) obj;
 		return Objects.equals(id, other.id);
 	}
-	
 	@Override
 	public String toString() {
 		return "Departamento [id=" + id + ", nome=" + nome+"]";

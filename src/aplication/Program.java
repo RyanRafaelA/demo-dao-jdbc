@@ -16,7 +16,13 @@ public class Program {
 		
 		System.out.println("\n=== Teste 1: Vendedor encontraDepartamento ====");
 		Departamento departamento = new Departamento(2, null);
-		List<Vendedor> lista = vd.EncontraDepartamento(departamento);
+		List<Vendedor> lista = vd.encontraDepartamento(departamento);
+		for(Vendedor obj : lista) {
+			System.out.println(obj);
+		}
+		
+		System.out.println("\n=== Teste 3: Vendedor encontraDepartamento ====");
+		lista = vd.encontraTodos();
 		for(Vendedor obj : lista) {
 			System.out.println(obj);
 		}

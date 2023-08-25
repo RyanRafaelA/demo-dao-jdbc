@@ -17,14 +17,14 @@ public class Program {
 		Vendedor vendedor = vd.encontraId(3);
 		System.out.println(vendedor);
 		
-		System.out.println("\n=== Teste 1: Vendedor encontraDepartamento ====");
+		System.out.println("\n=== Teste 2: Vendedor encontraDepartamento ====");
 		Departamento departamento = new Departamento(2, null);
 		List<Vendedor> lista = vd.encontraDepartamento(departamento);
 		for(Vendedor obj : lista) {
 			System.out.println(obj);
 		}
 		
-		System.out.println("\n=== Teste 3: Vendedor encontraDepartamento ====");
+		System.out.println("\n=== Teste 3: Vendedor encontraTodos ====");
 		lista = vd.encontraTodos();
 		for(Vendedor obj : lista) {
 			System.out.println(obj);

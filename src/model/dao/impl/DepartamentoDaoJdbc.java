@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import db.DB;
@@ -20,7 +21,8 @@ public class DepartamentoDaoJdbc implements DepartamentoDao{
 
 	@Override
 	public void inserir(Departamento obj) {
-		// TODO Auto-generated method stub
+		PreparedStatement ps = null;
+		
 		
 	}
 
@@ -38,15 +40,15 @@ public class DepartamentoDaoJdbc implements DepartamentoDao{
 
 	@Override
 	public Departamento encontraId(Integer id) {
-		PreparedStatement st = null;
+		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
 		try {
-			st = conn.prepareStatement(	"SELECT * From Department"
+			ps = conn.prepareStatement(	"SELECT * From Department"
 					+"\nWHERE Department.Id = ?" );
 			
-			st.setInt(1, id);
-			rs=st.executeQuery();
+			ps.setInt(1, id);
+			rs=ps.executeQuery();
 			
 			if(rs.next()) {
 				Departamento dep = new Departamento();
@@ -61,15 +63,37 @@ public class DepartamentoDaoJdbc implements DepartamentoDao{
 			throw new DbException(e.getMessage());
 		}
 		finally {
-			DB.closeStatement(st);
+			DB.closeStatement(ps);
 			DB.closeResultSet(rs);
 		}
 	}
 
 	@Override
 	public List<Departamento> encontraTodos() {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(	"SELECT * from Department" );
+			rs = ps.executeQuery();
+			
+			List<Departamento> lista = new ArrayList<>(); 
+			
+			while(rs.next()) {
+				Departamento dep = new Departamento();
+				dep.setNome(rs.getString("Name"));
+				dep.setId(rs.getInt("Id"));
+				
+				lista.add(dep);
+			}
+			return lista;
+		}
+		catch(SQLException e){
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeResultSet(rs);
+			DB.closeStatement(ps);
+		}
 	}
 
 }

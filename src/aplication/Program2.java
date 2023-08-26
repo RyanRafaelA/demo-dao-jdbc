@@ -16,8 +16,8 @@ public class Program2 {
 		
 		System.out.println("=====  Teste 1 : Departamento -> EncontraId =====");
 		System.out.print("Digite o id de um departamento: ");
-		Departamento d = dp.encontraId(sc.nextInt());
-		System.out.println(d);
+		Departamento departamento = dp.encontraId(sc.nextInt());
+		System.out.println(departamento);
 		
 		System.out.println("\n==== Teste 2 : Departamento -> EncontraTodos ====");
 		lista=dp.encontraTodos();
@@ -26,9 +26,15 @@ public class Program2 {
 		}
 			
 		System.out.println("\n==== Teste 3: Departamento -> inserir ===");
-		Departamento departamento = new Departamento(null, "Comida");
+		departamento = new Departamento(null, "Comida");
 		dp.inserir(departamento);
 		System.out.println("Inseriu um novo departameto, com Id: "+departamento.getId());
+		
+		System.out.println("\n=== Teste 4: Departamento -> atualizar ===");
+		departamento = dp.encontraId(3);
+		departamento.setNome("Musica");
+		dp.atualizar(departamento);
+		System.out.println("Atualização completa!");
 		
 		
 		sc.close();

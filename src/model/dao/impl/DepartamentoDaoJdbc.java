@@ -60,10 +60,20 @@ public class DepartamentoDaoJdbc implements DepartamentoDao{
 		try {
 			ps = conn.prepareStatement(
 					"UPDATE Department"
-					+"SET Name = ?"
-					+"WHERE ID = ?" );
-					
+					+"\nSET Name = ?"
+					+"\nWHERE ID = ?" );
+			ps.setString(1, obj.getNome());
+			ps.setInt(2, obj.getId());
+			
+			ps.executeUpdate();
 		}
+		catch(SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(ps);
+		}
+		
 		
 	}
 

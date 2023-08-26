@@ -14,18 +14,21 @@ public class Program2 {
 		List<Departamento> lista = new ArrayList<>();
 		DepartamentoDao dp = FabricaDao.crearDepartamentoDao();
 		
-		System.out.println("====  Teste 1 : Departamento -> EncontraId =====");
+		System.out.println("=====  Teste 1 : Departamento -> EncontraId =====");
 		System.out.print("Digite o id de um departamento: ");
 		Departamento d = dp.encontraId(sc.nextInt());
 		System.out.println(d);
 		
-		System.out.println("\n=== Teste 2 : Departamento -> EncontraTodos ====");
+		System.out.println("\n==== Teste 2 : Departamento -> EncontraTodos ====");
 		lista=dp.encontraTodos();
 		for(Departamento dee : lista) {
 			System.out.println(dee);
 		}
 			
-		
+		System.out.println("\n==== Teste 3: Departamento -> inserir ===");
+		Departamento departamento = new Departamento(null, "Comida");
+		dp.inserir(departamento);
+		System.out.println("Inseriu um novo departameto, com Id: "+departamento.getId());
 		
 		
 		sc.close();

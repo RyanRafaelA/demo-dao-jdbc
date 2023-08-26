@@ -36,6 +36,10 @@ public class Program2 {
 		dp.atualizar(departamento);
 		System.out.println("Atualização completa!");
 		
+		System.out.println("\n=== Teste 6: Departamento -> deletarId ===");
+		System.out.print("Entre com id do campo que deseja deletar: ");
+		dp.deletarId(sc.nextInt());
+		System.out.println("Foi deletado!");
 		
 		sc.close();
 	}

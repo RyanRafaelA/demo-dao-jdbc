@@ -58,10 +58,9 @@ public class DepartamentoDaoJdbc implements DepartamentoDao{
 	public void atualizar(Departamento obj) {
 		PreparedStatement ps  = null;
 		try {
-			ps = conn.prepareStatement(
-					"UPDATE Department"
-					+"\nSET Name = ?"
-					+"\nWHERE ID = ?" );
+			ps = conn.prepareStatement( "UPDATE Department"
+										+"\nSET Name = ?"
+										+"\nWHERE ID = ?" );
 			ps.setString(1, obj.getNome());
 			ps.setInt(2, obj.getId());
 			
@@ -79,7 +78,20 @@ public class DepartamentoDaoJdbc implements DepartamentoDao{
 
 	@Override
 	public void deletarId(Integer id) {
-		// TODO Auto-generated method stub
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement(	"DELETE FROM Department WHERE Id = ?" );
+			
+			ps.setInt(1, id);
+			
+			ps.executeUpdate();
+		}
+		catch(SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(ps);
+		}
 		
 	}
 
